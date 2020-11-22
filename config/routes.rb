@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     delete 'logout', action: :destroy
   end
   namespace :admin do
-    resources :users
+    resources :users do
+      post :confirm,action: :confirm_new,on: :new
+    end
   end
   root to: 'tasks#index'
   resources :tasks
