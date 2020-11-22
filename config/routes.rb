@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get 'login',to: 'sessions#new'
-  post 'login',to: 'sessions#create'
-  delete 'logout',to: 'sessions#destroy'
+
+  controller :sessions do
+    get 'login', action: :new
+    post 'login', action: :create
+    delete 'logout', action: :destroy
+  end
   namespace :admin do
     resources :users
   end
