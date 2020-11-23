@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.new(task_param)
     if @task.save
+      TaskMailer.creation_email(@task).deliver_now
       redirect_to tasks_url, notice: "タスク「#{@task.name}」を登録しました。"
     else
       render :new
