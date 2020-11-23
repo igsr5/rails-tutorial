@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  has_one_attached :image
   validate :validate_name_not_including_comma
   validates :name,presence: true
   validates :name,length: {maximum: 30}
