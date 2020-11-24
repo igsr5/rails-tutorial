@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task,only: [:show,:edit,:update,:destroy]
   def index
     @q=current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct:true)
+    @tasks = @q.result(distinct:true).page(params[:page]).per(10)
   end
 
   def show
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: "タスク「#{@task.name}」を削除しました。"
+    head :no_content
   end
 
   def task_param
