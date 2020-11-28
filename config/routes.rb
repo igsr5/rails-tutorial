@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users do
       post :confirm,action: :confirm_new,on: :new
+      # post :confirm,action: :confirm_new,on: :edit
     end
   end
   root to: 'tasks#index'
